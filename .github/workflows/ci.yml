@@ -19,5 +19,7 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: sos-now/package-lock.json
-      - run: npm ci
+      # package-lock.json from upstream is out of sync with package.json,
+      # so `npm ci` fails. Switch back to `npm ci` once the lock file is regenerated.
+      - run: npm install --no-audit --no-fund
       - run: npm run build
